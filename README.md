@@ -9,12 +9,19 @@ Técnico en Programación de Aplicaciones y Servicios para la Nube - Ficha 30700
 
 🧩 1. Introducción
 
-    El proyecto en cuestión consiste en el desarrollo de una aplicación web para la gestión de tareas y proyectos, orientada principalmente a los aprendices del SENA del programa técnico de Programación de Aplicaciones y Servicios para la Nube.
+    El proyecto en cuestión consiste en el desarrollo de una aplicación web para la gestión de tareas 
+    y proyectos, orientada principalmente a los aprendices del SENA del programa técnico en 
+    Programación de Aplicaciones y Servicios para la Nube.
+
 
 
 📌 2. Versión 01 
 
-    Proceso de diseño, desarrollo, configuración y prueba de una API RESTful construida utilizando tecnologías modernas como Node.js, Express.js, MongoDB, Mongoose y Postman. La API simula una plataforma web de gestión de tareas y proyectos, y sigue una arquitectura organizada en capas bajo el patrón Modelo–Vista–Controlador (MVC).
+    Proceso de diseño, desarrollo, configuración y prueba de una API RESTful 
+    construida utilizando tecnologías modernas como Node.js, Express.js, MongoDB, Mongoose y Postman. 
+    La API simula una plataforma web de gestión de tareas y proyectos, 
+    y sigue una arquitectura organizada en capas bajo el patrón Modelo–Vista–Controlador (MVC).
+
 
 
 🛠️ 3. Tecnologías Utilizadas
@@ -27,6 +34,7 @@ Técnico en Programación de Aplicaciones y Servicios para la Nube - Ficha 30700
     Dotenv: Para manejar variables de entorno de forma segura.
     Bcrypt.js: Para cifrado de contraseñas.
     JWT: Para autenticación basada en tokens (pendiente de integración).
+
 
 
 📐 4. Arquitectura y Estructura del Proyecto
@@ -139,7 +147,10 @@ Técnico en Programación de Aplicaciones y Servicios para la Nube - Ficha 30700
 
 ✅ 10. Conclusiones
 
-    El desarrollo de esta API RESTful ha permitido implementar una arquitectura limpia y funcional, conectada a MongoDB, con rutas separadas por entidades, modelos relacionales y pruebas exitosas desde Postman. Se estableció una base sólida para una aplicación web profesional que puede ampliarse con autenticación, control de permisos, validación de entradas, y más.
+    El desarrollo de esta API RESTful ha permitido implementar una arquitectura limpia y funcional, 
+    conectada a MongoDB, con rutas separadas por entidades,modelos relacionales y 
+    pruebas exitosas desde Postman. Se estableció una base sólida para una aplicación web profesional,
+    que puede ampliarse con autenticación, control de permisos, validación de entradas, y más.
 
 
 

@@ -165,7 +165,7 @@ Técnico en Programación de Aplicaciones y Servicios para la Nube - Ficha 30700
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/KennyRodMad/GA6-220501123-AA2-EV01.-API-RESTFUL.git
+   git clone https://github.com/KennyRodMad/Aplicacion_Web_Gestion_de_Tareas.git
    cd GA6-220501123-AA2-EV01.-API-RESTFUL
    ```
 

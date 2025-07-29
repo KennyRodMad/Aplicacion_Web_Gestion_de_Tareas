@@ -8,6 +8,7 @@ const app = express();
 // Middlewares
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
 // Conexión a MongoDB
 const connectDB = require('./config/db');

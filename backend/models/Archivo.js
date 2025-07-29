@@ -2,8 +2,12 @@ const mongoose = require('mongoose');
 
 const archivoSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
-  url: { type: String, required: true },
-  tipo: { type: String },
+  url: { type: String, required: true, unique: true },
+  tipo: { 
+    type: String, 
+    enum: ['pdf', 'docx', 'xlsx', 'png', 'jpg', 'jpeg', 'zip', 'rar'], 
+    required: true 
+  },
   tarea: { type: mongoose.Schema.Types.ObjectId, ref: 'Tarea' },
   proyecto: { type: mongoose.Schema.Types.ObjectId, ref: 'Proyecto' },
   version: { type: Number, default: 1 },

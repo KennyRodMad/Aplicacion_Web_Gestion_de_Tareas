@@ -3,6 +3,7 @@ const router = express.Router();
 const tareaController = require('../controllers/tareaController');
 
 router.get('/', tareaController.listarTareas);
+router.get('/proyecto/:proyectoId', tareaController.listarTareasPorProyecto);
 router.post('/', tareaController.crearTarea);
 router.get('/:id', tareaController.obtenerTarea);
 router.put('/:id', tareaController.actualizarTarea);

@@ -9,10 +9,10 @@ const historialSchema = new mongoose.Schema({
 
 const tareaSchema = new mongoose.Schema({
   nombre: { type: String, required: true, trim: true },
-  descripcion: { type: String },
+  descripcion: { type: String, default: '' }, // Valor por defecto
   prioridad: { type: String, enum: ['baja', 'media', 'alta', 'crítica'], default: 'media' },
   estado: { type: String, enum: ['pendiente', 'en progreso', 'en revisión', 'completada'], default: 'pendiente' },
-  fechaVencimiento: { type: Date },
+  fechaVencimiento: { type: Date, default: null }, // Puede ser null si no se especifica
   etiquetas: [{ type: String }],
   responsables: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }],
   historial: [historialSchema],

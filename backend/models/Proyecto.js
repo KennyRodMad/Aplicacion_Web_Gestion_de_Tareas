@@ -29,5 +29,3 @@ const proyectoSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Proyecto', proyectoSchema);
-
-hsert

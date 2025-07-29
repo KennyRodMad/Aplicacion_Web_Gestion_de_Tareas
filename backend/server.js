@@ -23,6 +23,7 @@ const notificacionRoutes = require('./routes/notificacionRoutes');
 const archivoRoutes = require('./routes/archivoRoutes');
 const reporteRoutes = require('./routes/reporteRoutes');
 const mensajeRoutes = require('./routes/mensajeRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 app.use('/usuarios', usuarioRoutes);
 app.use('/proyectos', proyectoRoutes);
@@ -32,11 +33,15 @@ app.use('/notificaciones', notificacionRoutes);
 app.use('/archivos', archivoRoutes);
 app.use('/reportes', reporteRoutes);
 app.use('/mensajes', mensajeRoutes);
+app.use('/auth', authRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
   res.json({ mensaje: 'Funcionando correctamente' });
 });
+
+const errorHandler = require('./middlewares/errorHandler');
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {

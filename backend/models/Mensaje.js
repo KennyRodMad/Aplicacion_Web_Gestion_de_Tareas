@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const mensajeSchema = new mongoose.Schema({
-  canal: { type: String, required: true }, // Ej: 'proyecto', 'tarea', 'privado'
+  canal: { 
+    type: String, 
+    enum: ['proyecto', 'tarea', 'privado'], 
+    required: true 
+  },
   usuarios: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }],
   contenido: { type: String, required: true },
   leidoPor: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }],

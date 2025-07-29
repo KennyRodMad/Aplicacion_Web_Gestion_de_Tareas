@@ -31,9 +31,13 @@ exports.obtenerMensaje = async (req, res) => {
 
 exports.marcarComoLeido = async (req, res) => {
   try {
+    const { usuarioId } = req.body;
+    if (!usuarioId) {
+      return res.status(400).json({ error: 'usuarioId es requerido' });
+    }
     const mensaje = await Mensaje.findByIdAndUpdate(
       req.params.id,
-      { $addToSet: { leidoPor: req.body.usuarioId } },
+      { $addToSet: { leidoPor: usuarioId } },
       { new: true }
     );
     if (!mensaje) return res.status(404).json({ error: 'Mensaje no encontrado' });

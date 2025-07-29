@@ -8,4 +8,13 @@ const reporteSchema = new mongoose.Schema({
   fecha: { type: Date, default: Date.now }
 }, { timestamps: true });
 
+// Validación: al menos uno de 'usuario' o 'proyecto' debe existir
+reporteSchema.pre('validate', function(next) {
+  if (!this.usuario && !this.proyecto) {
+    this.invalidate('usuario', 'El reporte debe estar vinculado a un usuario o proyecto');
+    this.invalidate('proyecto', 'El reporte debe estar vinculado a un usuario o proyecto');
+  }
+  next();
+});
+
 module.exports = mongoose.model('Reporte', reporteSchema);

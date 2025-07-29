@@ -4,45 +4,37 @@ const Tarea = require('../models/Tarea');
 exports.crearTarea = async (req, res) => {
   try {
     const tarea = new Tarea(req.body);
-    const guardada = await tarea.save();
-    res.status(201).json(guardada);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al crear tarea', error });
+    await tarea.save();
+    res.status(201).json(tarea);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 };
 
 // Obtener todas las tareas
-exports.obtenerTareas = async (req, res) => {
+exports.listarTareas = async (req, res) => {
   try {
     const tareas = await Tarea.find()
-      .populate('responsable', 'nombre correo')
-      .populate('proyecto', 'nombre');
+      .populate('responsables')
+      .populate('comentarios')
+      .populate('adjuntos');
     res.json(tareas);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener tareas', error });
-  }
-};
-
-// Obtener por ID de proyecto
-exports.obtenerTareasPorProyecto = async (req, res) => {
-  try {
-    const tareas = await Tarea.find({ proyecto: req.params.proyectoId })
-      .populate('responsable', 'nombre correo');
-    res.json(tareas);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al obtener tareas por proyecto', error });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
 // Obtener tarea por ID
-exports.obtenerTareaPorId = async (req, res) => {
+exports.obtenerTarea = async (req, res) => {
   try {
     const tarea = await Tarea.findById(req.params.id)
-      .populate('responsable', 'nombre correo');
-    if (!tarea) return res.status(404).json({ mensaje: 'Tarea no encontrada' });
+      .populate('responsables')
+      .populate('comentarios')
+      .populate('adjuntos');
+    if (!tarea) return res.status(404).json({ error: 'Tarea no encontrada' });
     res.json(tarea);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al buscar tarea', error });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -50,10 +42,10 @@ exports.obtenerTareaPorId = async (req, res) => {
 exports.actualizarTarea = async (req, res) => {
   try {
     const tarea = await Tarea.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!tarea) return res.status(404).json({ mensaje: 'Tarea no encontrada' });
+    if (!tarea) return res.status(404).json({ error: 'Tarea no encontrada' });
     res.json(tarea);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al actualizar tarea', error });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -61,9 +53,9 @@ exports.actualizarTarea = async (req, res) => {
 exports.eliminarTarea = async (req, res) => {
   try {
     const tarea = await Tarea.findByIdAndDelete(req.params.id);
-    if (!tarea) return res.status(404).json({ mensaje: 'Tarea no encontrada' });
-    res.json({ mensaje: 'Tarea eliminada correctamente' });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al eliminar tarea', error });
+    if (!tarea) return res.status(404).json({ error: 'Tarea no encontrada' });
+    res.json({ mensaje: 'Tarea eliminada' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };

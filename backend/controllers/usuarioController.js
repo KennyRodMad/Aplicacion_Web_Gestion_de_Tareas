@@ -4,10 +4,10 @@ const bcrypt = require('bcryptjs');
 // Crear usuario (mantener existente)
 exports.crearUsuario = async (req, res) => {
   try {
-    const { nombre, correo, contraseña, rol } = req.body;
+    const { nombre, email, contraseña, rol } = req.body;
     
     // Verificar si el usuario ya existe
-    const usuarioExistente = await Usuario.findOne({ correo });
+    const usuarioExistente = await Usuario.findOne({ email });
     if (usuarioExistente) {
       return res.status(400).json({ mensaje: 'El usuario ya existe' });
     }
@@ -18,7 +18,7 @@ exports.crearUsuario = async (req, res) => {
 
     const usuario = new Usuario({
       nombre,
-      correo,
+      email,
       contraseña: contraseñaCifrada,
       rol
     });
@@ -59,8 +59,8 @@ exports.obtenerUsuarioPorId = async (req, res) => {
 // 🆕 Actualizar usuario
 exports.actualizarUsuario = async (req, res) => {
   try {
-    const { nombre, correo, contraseña, rol } = req.body;
-    const actualizacion = { nombre, correo, rol };
+    const { nombre, email, contraseña, rol } = req.body;
+    const actualizacion = { nombre, email, rol };
 
     // Si se proporciona una nueva contraseña, cifrarla
     if (contraseña) {
@@ -81,7 +81,7 @@ exports.actualizarUsuario = async (req, res) => {
     res.json(usuario);
   } catch (error) {
     if (error.code === 11000) {
-      return res.status(400).json({ mensaje: 'El correo ya está en uso' });
+      return res.status(400).json({ mensaje: 'El email ya está en uso' });
     }
     res.status(500).json({ mensaje: 'Error al actualizar usuario', error });
   }

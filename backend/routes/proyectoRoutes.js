@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {
-  crearProyecto,
-  obtenerProyectos,
-  obtenerProyectoPorId,
-  actualizarProyecto,
-  eliminarProyecto
-} = require('../controllers/proyectoController');
+const proyectoController = require('../controllers/proyectoController');
 
-router.post('/', crearProyecto);
-router.get('/', obtenerProyectos);
-router.get('/:id', obtenerProyectoPorId); // 👈 obtener por ID
-router.put('/:id', actualizarProyecto);   // 👈 actualizar
-router.delete('/:id', eliminarProyecto);  // 👈 eliminar
+router.get('/', proyectoController.listarProyectos);
+router.post('/', proyectoController.crearProyecto);
+router.get('/:id', proyectoController.obtenerProyecto);
+router.put('/:id', proyectoController.actualizarProyecto);
+router.delete('/:id', proyectoController.eliminarProyecto);
 
 module.exports = router;

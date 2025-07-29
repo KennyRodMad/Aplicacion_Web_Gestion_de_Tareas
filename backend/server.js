@@ -17,10 +17,20 @@ connectDB();
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const proyectoRoutes = require('./routes/proyectoRoutes');
 const tareaRoutes = require('./routes/tareaRoutes');
+const comentarioRoutes = require('./routes/comentarioRoutes');
+const notificacionRoutes = require('./routes/notificacionRoutes');
+const archivoRoutes = require('./routes/archivoRoutes');
+const reporteRoutes = require('./routes/reporteRoutes');
+const mensajeRoutes = require('./routes/mensajeRoutes');
 
 app.use('/usuarios', usuarioRoutes);
 app.use('/proyectos', proyectoRoutes);
 app.use('/tareas', tareaRoutes);
+app.use('/comentarios', comentarioRoutes);
+app.use('/notificaciones', notificacionRoutes);
+app.use('/archivos', archivoRoutes);
+app.use('/reportes', reporteRoutes);
+app.use('/mensajes', mensajeRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {

@@ -92,7 +92,7 @@ Aplicación Web - Gestión de Tareas/
 
 ```
 
-![Estructura del proyecto](backend\assets\estructurActual.png)
+![Estructura del proyecto](backend/assets/estructurActual.pngestructurActual.png)
 
 ---
 

@@ -113,7 +113,7 @@ Aplicación Web - Gestión de Tareas/
    ```
    PORT=5001
    MONGO_URI=mongodb://localhost:27017/web_gestion_tareas
-   JWT_SECRET=TU_SECRETO_JWT
+   JWT_SECRET=SISTEMAproyectosSENA2025
    ```
 
 4. **Conexión a la base de datos**  
@@ -291,7 +291,7 @@ Cuenta con autenticación, control de permisos, validación de entradas, manejo 
    # Crear archivo .env
    PORT=5001
    MONGO_URI=mongodb://localhost:27017/web_gestion_tareas
-   JWT_SECRET=TU_SECRETO_JWT
+   JWT_SECRET=SISTEMAproyectosSENA2025
    ```
 
 4. **Crear carpeta de archivos subidos**

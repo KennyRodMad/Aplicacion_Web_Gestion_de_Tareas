@@ -115,7 +115,7 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="landing-footer">
         <div className="container">
-          <p>© 2024 SENAPlanner. Plataforma diseñada para la excelencia educativa.</p>
+          <p>© 2025 SENAPlanner. Plataforma diseñada para la excelencia educativa.</p>
         </div>
       </footer>
 

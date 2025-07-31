@@ -1,326 +1,302 @@
-# 📝 Aplicación Web - Gestión de Tareas
+# 📝 SENAPlanner: App Web para la Gestión de Proyectos y Tareas
 
 **Grupo de Trabajo CLOUD GURUS:** Dixson Sneider Cardona Acevedo, Kenny Miguel Rodríguez Madrid, María Fernanda Vega Pacheco  
 **Técnico en Programación de Aplicaciones y Servicios para la Nube - Ficha 3070096 - SENA**
 
----
 
 ## 🧩 1. Descripción General del Proyecto
 
-El proyecto consiste en el desarrollo de una aplicación web para la gestión de tareas y proyectos, orientada principalmente a ambientes académicos y colaborativos, con enfoque en seguimiento, visualización de progreso y notificaciones inteligentes.
+La aplicación web de Gestión de Tareas y Proyectos SENAPlanner es una herramienta diseñada para satisfacer las necesidades de los aprendices y los instructores del SENA, específicamente para gestionar proyectos y tareas en entornos educativos y colaborativos. Se plantea como una solución moderna e integral que optimiza los procesos organizativos, fomenta la interacción entre los usuarios y mejora la eficiencia en el seguimiento del progreso de los proyectos.
 
----
+Su diseño se enfoca en la facilidad de uso, asegurando que sea accesible para personas con diversos niveles de competencia tecnológica. La herramienta permitirá a los aprendices gestionar sus responsabilidades académicas, mientras que los instructores tendrán acceso a funcionalidades avanzadas para supervisar y evaluar el desempeño de los estudiantes.
 
-## 📌 2. Versión Actual
+Además, se adapta a dispositivos móviles y de escritorio, lo que garantiza un acceso universal para usuarios con diferentes recursos tecnológicos. Esto permite a los aprendices y equipos de trabajo mantenerse conectados, organizados y productivos sin importar su ubicación.
+La visión de esta plataforma es proporcionar un sistema accesible, eficiente y adaptable que transforme la manera en que los aprendices e instructores del SENA organizan, gestionan y colaboran en sus proyectos académicos y profesionales.
 
-API RESTful robusta y segura, construida con Node.js, Express.js, MongoDB y Mongoose, siguiendo el patrón Modelo–Vista–Controlador (MVC).  
-Incluye autenticación JWT, cifrado de contraseñas, validación de datos, manejo de archivos, control de errores y pruebas con Postman.
+La plataforma está diseñada para atender las necesidades específicas de tres perfiles principales de usuario: aprendices, instructores y administradores. Cada grupo tiene características y expectativas particulares que guian el diseño y la funcionalidad del sistema.
 
----
 
-## 🛠️ 3. Tecnologías Utilizadas
+## 🏗️ 2. Arquitectura del Proyecto
 
-- **Node.js**: Entorno de ejecución JavaScript en servidor.
-- **Express.js**: Framework web para APIs.
-- **MongoDB**: Base de datos NoSQL.
-- **Mongoose**: ODM para MongoDB.
-- **Dotenv**: Variables de entorno.
-- **Bcrypt.js**: Cifrado seguro de contraseñas.
-- **JWT (jsonwebtoken)**: Autenticación basada en tokens.
-- **Multer**: Subida y gestión de archivos.
-- **Express-validator**: Validación de datos de entrada.
-- **Cors**: Seguridad y control de acceso.
-- **Nodemon**: Recarga automática en desarrollo.
-- **Postman**: Pruebas de la API.
+El presente proyecto implementa una arquitectura de software basada en capas, complementada con el patrón Modelo–Vista–Controlador (MVC) adaptado al contexto de una API RESTful, y una clara separación cliente-servidor a través de un frontend desacoplado desarrollado en React. Esta combinación permite una solución modular, escalable y mantenible que facilita el trabajo colaborativo y la evolución continua del sistema.
 
----
+### 2.1. 🔧 Backend: Arquitectura en Capas + Patrón MVC
 
-## 📐 4. Arquitectura y Estructura del Proyecto
+El backend del sistema está desarrollado con Node.js, Express y MongoDB, estructurado en una arquitectura de capas que favorece la separación de responsabilidades. Cada capa cumple un rol específico:
 
-El backend está organizado bajo el patrón MVC y buenas prácticas para escalabilidad y mantenibilidad.
+- Modelo (models/): Define los esquemas de datos mediante Mongoose, representando entidades como Usuario, Proyecto, Tarea, Comentario, entre otros.
+- Controlador (controllers/): Contiene la lógica de negocio y se encarga de procesar las solicitudes provenientes de las rutas y manipular los modelos.
+- Rutas (routes/): Gestionan los endpoints de la API RESTful, conectando con sus respectivos controladores.
+- Middlewares (middlewares/): Encargados de gestionar tareas transversales como la autenticación, autorización por roles, manejo centralizado de errores y validación de datos.
+- Validadores (validators/): Utilizan express-validator para asegurar que los datos de entrada cumplan con las reglas establecidas.
+- Configuración (config/): Centraliza la conexión a la base de datos MongoDB.
+- Manejo de errores (error/): Define una clase personalizada para el control uniforme de errores.
+
+Este diseño permite una implementación clara del patrón MVC en el backend, donde la vista es sustituida por respuestas JSON que pueden ser consumidas por cualquier cliente, especialmente por la aplicación frontend.
+
+### 2.2. 🌐 Frontend: Arquitectura Modular y Cliente SPA
+
+El frontend está desarrollado con React.js, bajo el enfoque de aplicación de una sola página (SPA). Su diseño modular se apoya en los siguientes principios:
+
+- Componentización por roles: Existen componentes específicos para los tipos de usuario (admin, aprendiz, instructor), lo que permite un control claro de las interfaces y responsabilidades.
+- Separación de responsabilidades:
+   - components/: Contiene los bloques funcionales reutilizables.
+   - pages/: Define las distintas vistas y pantallas de la aplicación.
+   - services/: Gestiona la comunicación con la API del backend.
+   - context/: Maneja el estado global de autenticación y otros contextos compartidos.
+   - styles/, assets/: Centralizan los recursos visuales y de estilo.
+- Gestión del estado: Se emplea el Context API para compartir datos entre componentes, especialmente para mantener el estado de autenticación del usuario.
+
+Esta arquitectura desacoplada permite que el frontend se mantenga independiente del backend, favoreciendo futuras migraciones, reusabilidad de la API y pruebas por separado.
+
+### 2.3. 🔄 Comunicación Cliente-Servidor
+
+El proyecto sigue una arquitectura cliente-servidor, donde el cliente (frontend) realiza peticiones HTTP al servidor (backend) a través de endpoints definidos en la API REST. Esto permite un flujo claro de solicitudes y respuestas, soportando operaciones como autenticación, creación y asignación de tareas, gestión de proyectos, colaboración entre roles, notificaciones, carga de archivos y generación de reportes.
+
+### 2.4. 📁 Estructura del Proyecto
+
+Toda esta arquitectura se ve reflejada en una estructura de carpetas clara y organizada, que facilita la comprensión del sistema por parte de desarrolladores actuales y futuros. A continuación se muestra la jerarquía completa del proyecto:
 
 ```
 Aplicación Web - Gestión de Tareas/
 │
-├── backend/                     # Carpeta principal del backend
-│   │
-│   ├── config/                  # Configuración de conexión a MongoDB
-│   │   └── db.js
-│   ├── controllers/             # Lógica de negocio por recurso
-│   │   ├── usuarioController.js
-│   │   ├── proyectoController.js
-│   │   ├── tareaController.js
-│   │   ├── comentarioController.js
-│   │   ├── notificacionController.js
-│   │   ├── archivoController.js
-│   │   ├── reporteController.js
-│   │   └── mensajeController.js
-│   ├── error/                   # Manejo de errores personalizados
-│   │   └── AppError.js
-│   ├── middlewares/            # Middlewares globales y de seguridad
-│   │   ├── authMiddleware.js
-│   │   ├── roleMiddleware.js
-│   │   ├── errorHandler.js
-│   │   └── validationHandler.js
-│   ├── models/                 # Modelos de datos (esquemas Mongoose)
-│   │   ├── Usuario.js
-│   │   ├── Proyecto.js
-│   │   ├── Tarea.js
-│   │   ├── Comentario.js
-│   │   ├── Notificacion.js
-│   │   ├── Archivo.js
-│   │   ├── Reporte.js
-│   │   └── Mensaje.js
-│   ├── routes/                 # Rutas de la API RESTful
-│   │   ├── usuarioRoutes.js
-│   │   ├── proyectoRoutes.js
-│   │   ├── tareaRoutes.js
-│   │   ├── comentarioRoutes.js
-│   │   ├── notificacionRoutes.js
-│   │   ├── archivoRoutes.js
-│   │   ├── reporteRoutes.js
-│   │   ├── mensajeRoutes.js
-│   │   └── authRoutes.js
+├── backend/                   # Carpeta principal del backend
+│   ├── config/                # Configuración de conexión a MongoDB
+│   ├── controllers/           # Lógica de negocio por recurso
+│   ├── error/                 # Manejo de errores personalizados
+│   ├── middlewares/           # Middlewares globales y de seguridad
+│   ├── models/                # Modelos de datos (esquemas Mongoose)
+│   ├── routes/                # Rutas de la API RESTful
 │   ├── uploads/               # Archivos subidos por los usuarios (ignorado en git)
 │   ├── validators/            # Validadores con express-validator
-│   │   └── usuarioValidator.js
-│   ├── .env                   # Variables de entorno (ignorado en git)
 │   ├── package.json           # Dependencias y scripts
-│   └── server.js              # Punto de entrada del servidor
-├── .gitignore                   # Exclusiones de Git
-├── README.md                    # Documentación del proyecto
+│   ├── server.js              # Punto de entrada del servidor
+│   └── README.md              # Documentación del Backend
+│
+├── frontend/                  # Carpeta principal del frontend
+│   ├── public/                # Archivos estáticos
+│   ├── src/                   # Código fuente de la interfaz
+│   │   ├── components/        # Componentes por rol y funcionalidad
+│   │   ├── context/           # Manejo de estado global
+│   │   ├── pages/             # Vistas principales
+│   │   ├── services/          # Comunicación con la API
+│   │   ├── styles/            # Estilos globales
+│   │   ├── App.js             # Componente principal
+│   │   └── index.js           # Punto de entrada del frontend
+│   ├── package.json
+│   └── README.md              # Documentación del Frontend
+├── .env                       # Variables de entorno (ignorado en git)
+├── .gitignore                 # Exclusiones de Git
+└── README.md                  # Documentación general del proyecto
 
 ```
 
-![Estructura del proyecto](assets/estructurActual.png)
 
----
+## ⚙️ 3. Funcionalidades Principales 
 
-## ⚙️ 5. Configuración del Entorno
+Las funcionalidades SENAPlanner están diseñadas para satisfacer las necesidades organizativas, colaborativas y de monitoreo de los usuarios finales (aprendices, instructores y administradores). Estas funciones son clave para garantizar que la plataforma cumpla con su propósito de optimizar la productividad y mejorar el desempeño de los equipos. A continuación, se describen las funcionalidades principales de manera detallada:
 
-1. **Inicialización del proyecto**
-   ```bash
-   npm init -y
-   ```
-
-2. **Instalación de dependencias**
-   ```bash
-   npm install express mongoose dotenv bcryptjs jsonwebtoken cors multer express-validator
-   npm install --save-dev nodemon
-   ```
-
-3. **Archivo `.env` para variables sensibles**
-   ```
-   PORT=5001
-   MONGO_URI=mongodb://localhost:27017/web_gestion_tareas
-   JWT_SECRET=SISTEMAproyectosSENA2025
-   ```
-
-4. **Conexión a la base de datos**  
-   Configurada en `config/db.js`.
-
-5. **Carpeta de archivos subidos**  
-   Crear manualmente la carpeta `uploads/` en la raíz de `backend/`.
-
----
-
-## ⚙️ 6. Funcionalidades Principales 
-
-### 6.1. 📝 Crear Tareas
+#### 📝 Crear Tareas
 - Cada tarea tendrá atributos: nombre, descripción, prioridad, estado (pendiente, en progreso, completada) y fecha de vencimiento.
 - Clasificación mediante etiquetas personalizadas.
 
-### 6.2. 👥 Asignar Tareas
-- nombre, objetivos, fechas, fases, miembros, tareas, indicadores, estado
-- nombre, objetivos, fechas, fases, miembros, tareas, indicadores, estado
+#### 👥 Asignar Tareas
+- Asignación a otros miembros del equipo o como tareas individuales.
+- Soporte para asignación múltiple en tareas grupales.
 
+#### 📊 Monitorear Tareas
+- Visualización en tiempo real del estado de tareas.
+- Métricas como porcentaje de avance y comparación entre tiempo estimado vs. tiempo real.
 
-### 6.3. Tarea
-- nombre, descripción, prioridad, estado, fechaVencimiento, etiquetas, responsables, historial, comentarios, adjuntos, proyecto
-- nombre, objetivos, fechas, fases, miembros, tareas, indicadores, estado
+#### 🕓 Historial y Actividad
+- Registro completo de modificaciones (usuario, fecha, cambios).
+- Seguimiento de comentarios y notas relacionadas a cada tarea.
 
+#### 📂 Agrupar Tareas
+- Organización de tareas relacionadas dentro de un proyecto.
+- Creación de subproyectos o fases dentro de un proyecto principal.
 
-### 6.4. Comentario
-- usuario, tarea/proyecto, mensaje, tipo, fecha
+#### 🎯 Definir Objetivos y Plazos
+- Inclusión de objetivos específicos, indicadores de éxito y plazos generales en cada proyecto.
+- Soporte para objetivos SMART (específicos, medibles, alcanzables, relevantes y con límite de tiempo).
 
-### 6.5. Notificación
+#### 📈 Progreso del Proyecto
+- Visualización mediante gráficos y métricas (tareas completadas vs. pendientes, tiempo invertido).
+- Indicadores de riesgos por retrasos detectados.
+
+#### 🤝 Colaboración y Roles
+- Asignación de roles: líder, colaborador, observador.
+- Espacio centralizado para comentarios y discusiones por proyecto.
+
+#### 🧩 Gestión de Flujos de Trabajo
+- Interfaz drag-and-drop (arrastrar y soltar) para mover tareas entre columnas (pendiente, en progreso, en revisión, completada).
+- Personalización de columnas según el proyecto.
+
+#### 🚦 Vista de Prioridades
+- Identificación de tareas críticas o urgentes mediante colores y etiquetas.
+- Filtros por prioridad, responsable o estado.
+
+#### ⏱ Seguimiento en Tiempo Real
+- Actualización automática de cambios realizados por otros usuarios.
+- Vistas grupales e individuales del flujo de trabajo.
+
+#### 📱 Soporte Multidispositivo
+- Diseño responsivo adaptado a pantallas grandes y pequeñas (desktop, tablet, móvil).
+
+#### 🔔 Notificaciones
+- Recordatorios de fechas límite.
+- Avisos de nuevas tareas asignadas o cambios importantes.
+- Notificaciones de comentarios o solicitudes de revisión.
+
+#### 🎛 Personalización
+- Configuración de frecuencia y medio de notificaciones (correo, push, avisos in-app).
+- Posibilidad de silenciar tareas o proyectos específicos.
+
+#### 🧠 Alertas Inteligentes
+- Avisos predictivos, como riesgo de no cumplir plazos u otras anomalías detectadas.
+
+#### 📥 Panel Centralizado de Notificaciones
+- Vista cronológica de todos los eventos recientes dentro de la plataforma.
+
+#### 📄 Reportes
+- Progreso individual: tareas completadas por cada aprendiz.
+- Rendimiento del equipo: métricas del desempeño grupal.
+- Estado del proyecto: detalle de tareas completadas, retrasos y cumplimiento de objetivos.
+
+#### 📊 Visualización Gráfica
+- Gráficos de barras, líneas y pastel para visualizar métricas clave.
+- Tablas exportables en formatos como CSV o PDF.
+
+#### 🔄 Exportación e Integración
+- Exportación de reportes para presentaciones o revisiones externas.
 - usuario, tipo, mensaje, leída, fecha, origen
 
-### 6.6. Archivo
-- nombre, url, tipo (pdf, docx, xlsx, png, jpg, jpeg, zip, rar), tarea/proyecto, versión, usuario, fecha
+#### 🔐 Acceso por Rol
+- Instructores: acceso a reportes detallados de aprendices bajo su cargo.
+- Administradores: generación de estadísticas globales del sistema.
 
-### 6.7. Reporte
-- tipo, datos, usuario/proyecto, fecha
+#### 💬 Mensajería Interna
+- Chat en tiempo real entre usuarios.
+- Notificaciones de mensajes importantes relacionados a tareas y proyectos.
 
-### 6.8. Mensaje
-- canal (proyecto, tarea, privado), usuarios, contenido, leidoPor, fecha
+#### 📎 Subida de Archivos
+- Adjuntar documentos, imágenes o videos a tareas y proyectos.
+- Control de versiones y almacenamiento seguro.
 
-**Relaciones clave:**
-- Una tarea pertenece a un proyecto y puede tener responsables y adjuntos.
-- Un comentario debe estar vinculado a una tarea o proyecto.
-- Un reporte debe estar vinculado a un usuario o proyecto.
-- Un archivo puede estar vinculado a una tarea o proyecto.
 
----
+## 👥 4. Perfiles de Usuario
 
-## 📡 7. Rutas REST Implementadas
+La plataforma está diseñada para atender las necesidades específicas de tres perfiles principales de usuario: aprendices, instructores y administradores. 
 
-### 7.1. Autenticación
-| Método | Ruta           | Funcionalidad         |
-|--------|----------------|----------------------|
-| POST   | /auth/login    | Login y obtención JWT|
+### 4.1. 🧑‍🎓 Aprendices (Usuarios Finales Primarios)
+- Rol Principal:
+   - Crear, gestionar y completar tareas.
+   - Colaborar en proyectos grupales.
+   - Consultar reportes y recibir retroalimentación.
+- Expectativas:
+   - Flujo de trabajo intuitivo.
+   - Acceso a tableros, métricas y alertas.
+   - Interfaz amigable para tareas escolares.
 
-### 7.2. Usuarios
-| Método | Ruta              | Funcionalidad       |
-|--------|-------------------|--------------------|
-| POST   | /usuarios         | Registrar usuario  |
-| GET    | /usuarios         | Listar usuarios    |
-| GET    | /usuarios/:id     | Obtener por ID     |
-| PUT    | /usuarios/:id     | Actualizar usuario |
-| DELETE | /usuarios/:id     | Eliminar usuario   |
+### 4.2. 👨‍🏫 Instructores (Supervisores)
+- Rol Principal:
+   - Supervisar proyectos de aprendices.
+   - Evaluar, comentar y retroalimentar tareas.
+   - Acceder a reportes e indicadores.
+- Expectativas:
+   - Vista global e individual de proyectos y tareas.
+   - Herramientas de calificación y evaluación.
+   - Notificaciones claras y filtradas.
 
-### 7.3. Proyectos
-| Método | Ruta                | Funcionalidad       |
-|--------|---------------------|--------------------|
-| POST   | /proyectos          | Crear proyecto     |
-| GET    | /proyectos          | Listar todos       |
-| GET    | /proyectos/:id      | Obtener uno        |
-| PUT    | /proyectos/:id      | Actualizar proyecto|
-| DELETE | /proyectos/:id      | Eliminar proyecto  |
+### 4.3. 👨‍💻 Administradores (Gestores del Sistema)
+- Rol Principal:
+   - Gestión técnica de la plataforma.
+   - Control de usuarios, roles, configuración.
+   - Monitoreo y mantenimiento del sistema.
+- Expectativas:
+   - Control completo del sistema.
+   - Acceso a estadísticas y reportes globales.
+   - Ajustes y soporte técnico integral.
 
-### 7.4. Tareas
-| Método | Ruta                              | Funcionalidad        |
-|--------|-----------------------------------|----------------------|
-| POST   | /tareas                           | Crear tarea          |
-| GET    | /tareas                           | Listar todas         |
-| GET    | /tareas/proyecto/:proyectoId      | Tareas por proyecto  |
-| GET    | /tareas/:id                       | Obtener tarea por ID |
-| PUT    | /tareas/:id                       | Actualizar tarea     |
-| DELETE | /tareas/:id                       | Eliminar tarea       |
+ 
+##
 
-### 7.5. Comentarios
-| Método | Ruta                | Funcionalidad        |
-|--------|---------------------|----------------------|
-| POST   | /comentarios        | Crear comentario     |
-| GET    | /comentarios        | Listar comentarios   |
-| GET    | /comentarios/:id    | Obtener por ID       |
-| PUT    | /comentarios/:id    | Actualizar comentario|
-| DELETE | /comentarios/:id    | Eliminar comentario  |
+# 🚀 Instalación, Configuración y Ejecución del Proyecto
 
-### 7.6. Notificaciones
-| Método | Ruta                | Funcionalidad           |
-|--------|---------------------|-------------------------|
-| POST   | /notificaciones     | Crear notificación      |
-| GET    | /notificaciones     | Listar notificaciones   |
-| GET    | /notificaciones/:id | Obtener por ID          |
-| PUT    | /notificaciones/:id/leida | Marcar como leída   |
-| DELETE | /notificaciones/:id | Eliminar notificación   |
-
-### 7.7. Archivos
-| Método | Ruta                | Funcionalidad           |
-|--------|---------------------|-------------------------|
-| POST   | /archivos           | Subir archivo           |
-| GET    | /archivos           | Listar archivos         |
-| GET    | /archivos/:id       | Obtener archivo por ID  |
-| PUT    | /archivos/:id       | Actualizar archivo      |
-| DELETE | /archivos/:id       | Eliminar archivo        |
-
-### 7.8. Reportes
-| Método | Ruta                | Funcionalidad           |
-|--------|---------------------|-------------------------|
-| POST   | /reportes           | Crear reporte           |
-| GET    | /reportes           | Listar reportes         |
-| GET    | /reportes/:id       | Obtener reporte por ID  |
-| DELETE | /reportes/:id       | Eliminar reporte        |
-
-### 7.9. Mensajes
-| Método | Ruta                | Funcionalidad           |
-|--------|---------------------|-------------------------|
-| POST   | /mensajes           | Enviar mensaje          |
-| GET    | /mensajes           | Listar mensajes         |
-| GET    | /mensajes/:id       | Obtener mensaje por ID  |
-| PUT    | /mensajes/:id/leido | Marcar como leído       |
-| DELETE | /mensajes/:id       | Eliminar mensaje        |
-
----
-
-## 🧪 8. Pruebas con Postman
-
-- Pruebas CRUD para todos los recursos.
-- Validación de flujos completos: registro, login, creación y gestión de proyectos, tareas, comentarios, archivos, reportes y mensajes.
-- Respuestas en formato JSON, con códigos de estado HTTP adecuados (201, 200, 400, 401, 404, 409, 500, etc.).
-
----
-
-## 🔒 9. Seguridad y Buenas Prácticas
-
-- **Autenticación JWT**: Login y protección de rutas privadas.
-- **Autorización por roles**: Acceso restringido según rol (admin, instructor, aprendiz).
-- **Contraseñas cifradas**: Uso de bcryptjs.
-- **Validación de datos**: express-validator en endpoints críticos.
-- **Manejo de errores**: Middleware global y clase AppError.
-- **Gestión segura de archivos**: Multer y validación de tipos permitidos.
-- **Variables sensibles**: Uso de `.env` y exclusión en `.gitignore`.
-
----
-
-## ✅ 10. Conclusiones
-
-El backend de la aplicación de gestión de tareas y proyectos está completamente estructurado, seguro y listo para integrarse con un frontend moderno.  
-Cuenta con autenticación, control de permisos, validación de entradas, manejo de archivos, reportes, mensajería interna y un sistema robusto de errores.
-
----
-
-## 🚀 Instalación y Configuración
-
-### Prerrequisitos
+### Prerrequisitos para el Backend
 - Node.js (v14 o superior)
 - MongoDB
 - Git
 
-### Pasos de instalación
+### Instalación
 
 1. **Clonar el repositorio**
    ```bash
    git clone https://github.com/KennyRodMad/Aplicacion_Web_Gestion_de_Tareas.git
-   cd Aplicacion_Web_Gestion_de_Tareas/backend
    ```
 
-2. **Instalar dependencias**
+### Configuración
+
+2. **Acceder al directorio Backend del proyecto**
+   ```bash
+   cd backend
+   ```
+
+3. **Instalar dependencias**
    ```bash
    npm install
    ```
 
-3. **Configurar variables de entorno**
+4. **Configurar variables de entorno (Crear archivo .env)**
    ```bash
-   # Crear archivo .env
    PORT=5001
    MONGO_URI=mongodb://localhost:27017/web_gestion_tareas
    JWT_SECRET=SISTEMAproyectosSENA2025
    ```
 
-4. **Crear carpeta de archivos subidos**
+4. **Crear manualmente la carpeta archivos subidos`uploads/` en la raíz de `backend/`**
    ```bash
    mkdir uploads
    ```
 
-5. **Iniciar MongoDB**
+### Ejecución
+
+5. **Iniciar el servido de MongoDB**
    ```bash
    mongod
    ```
 
-6. **Ejecutar el proyecto**
+6. **Ejecutar el backeend con uno de los dos comandos (según se requiera)**
    ```bash
-   npm run dev
+   npm run dev #Ejecutar en desarrollo con nodemon
+   npm start #Ejecutar en producción
    ```
 
-7. **Probar la API**
-   - Abrir: http://localhost:5001
-   - Probar endpoints con Postman
+### Prerrequisitos para ejecución en el Frontend
+- Backend de SENAPlanner ejecutándose en `http://localhost:5001`
 
-### Scripts disponibles
-- `npm start` - Ejecutar en producción
-- `npm run dev` - Ejecutar en desarrollo con nodemon
+7. **Acceder al directorio Frontend del proyecto**
+   ```bash
+   cd frontend
+   ```
 
----
+8. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
+
+10. **Agregar en el archivo .env**
+   ```bash
+   REACT_APP_API_URL=http://localhost:5001
+   ```
+
+11. **Ejecutar en modo desarrollo**:
+   ```bash
+   npm start
+   ```
+
+12. **Abrir en el navegador**:
+   La aplicación estará disponible en `http://localhost:3000`
+
+
 

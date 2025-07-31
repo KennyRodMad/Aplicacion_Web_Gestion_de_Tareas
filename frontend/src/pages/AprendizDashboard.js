@@ -17,10 +17,6 @@ const AprendizDashboard = () => {
     progresoGeneral: 0
   });
 
-  useEffect(() => {
-    loadStats();
-  }, [loadStats]);
-
   const loadStats = async () => {
     try {
       const [tareas, proyectos] = await Promise.all([
@@ -44,6 +40,10 @@ const AprendizDashboard = () => {
       console.error('Error loading stats:', error);
     }
   };
+
+  useEffect(() => {
+    loadStats();
+  }, [loadStats]);
 
   const handleLogout = () => {
     logout();

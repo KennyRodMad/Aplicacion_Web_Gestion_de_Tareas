@@ -71,6 +71,7 @@ frontend/                                    # Carpeta principal del frontend
 │   │   └── globals.css
 │   ├── App.js                               # Componente principal
 │   └── index.js                             # Punto de entrada del frontend
+├── .env                                     # Variables de entorno en el frontend (ignorado en git)
 ├── package.json
 └── README.md                                # Documentación del Frontend
 ```
@@ -252,7 +253,7 @@ El frontend está configurado para hacer proxy al backend en `http://localhost:5
    npm install
    ```
 
-3. **Configurar variables de entorno (agregar línea en el archivo `.env` en la raíz del proyecto)**:
+3. **Configurar variables de entorno (crear el archivo `.env` en la carpeta frontend y agregar)**:
    ```
    REACT_APP_API_URL=http://localhost:5001
    ```

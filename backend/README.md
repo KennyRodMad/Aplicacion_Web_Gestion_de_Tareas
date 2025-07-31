@@ -71,6 +71,7 @@ backend/                         # Carpeta principal del backend
 ├── uploads/                     # Archivos subidos por los usuarios (ignorado en git)
 ├── validators/                  # Validadores con express-validator
 │   └── usuarioValidator.js
+├── .env                         # Variables de entorno en el backend (ignorado en git)
 ├── package.json                 # Dependencias y scripts
 ├── server.js                    # Punto de entrada del servidor
 └── README.md                    # Documentación del Backend
@@ -216,9 +217,8 @@ backend/                         # Carpeta principal del backend
    npm install
    ```
 
-3. **Configurar variables de entorno**
+3. **Configurar variables de entorno (crear el archivo `.env` en la carpeta backend y agregar):**
    ```bash
-   # Crear archivo .env
    PORT=5001
    MONGO_URI=mongodb://localhost:27017/web_gestion_tareas
    JWT_SECRET=SISTEMAproyectosSENA2025

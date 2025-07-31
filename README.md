@@ -70,6 +70,7 @@ Aplicación Web - Gestión de Tareas/
 │   ├── uploads/               # Archivos subidos por los usuarios (ignorado en git)
 │   ├── validators/            # Validadores con express-validator
 │   ├── package.json           # Dependencias y scripts
+│   ├── .env                   # Variables de entorno en el backend (ignorado en git)
 │   ├── server.js              # Punto de entrada del servidor
 │   └── README.md              # Documentación del Backend
 │
@@ -83,9 +84,9 @@ Aplicación Web - Gestión de Tareas/
 │   │   ├── styles/            # Estilos globales
 │   │   ├── App.js             # Componente principal
 │   │   └── index.js           # Punto de entrada del frontend
+│   ├── .env                   # Variables de entorno en el frontend (ignorado en git)
 │   ├── package.json
 │   └── README.md              # Documentación del Frontend
-├── .env                       # Variables de entorno (ignorado en git)
 ├── .gitignore                 # Exclusiones de Git
 └── README.md                  # Documentación general del proyecto
 
@@ -237,7 +238,7 @@ La plataforma está diseñada para atender las necesidades específicas de tres 
 
 ### Configuración
 
-2. **Acceder al directorio Backend del proyecto**
+2. **Acceder al directorio backend del proyecto**
    ```bash
    cd backend
    ```
@@ -247,7 +248,7 @@ La plataforma está diseñada para atender las necesidades específicas de tres 
    npm install
    ```
 
-4. **Configurar variables de entorno (Crear archivo .env)**
+4. **Configurar variables de entorno (Crear archivo .env dentro de la carpeta backend y agregar):**
    ```bash
    PORT=5001
    MONGO_URI=mongodb://localhost:27017/web_gestion_tareas
@@ -272,10 +273,10 @@ La plataforma está diseñada para atender las necesidades específicas de tres 
    npm start #Ejecutar en producción
    ```
 
-### Prerrequisitos para ejecución en el Frontend
+### Prerrequisitos para ejecución en el frontend
 - Backend de SENAPlanner ejecutándose en `http://localhost:5001`
 
-7. **Acceder al directorio Frontend del proyecto**
+7. **Acceder al directorio frontend del proyecto**
    ```bash
    cd frontend
    ```
@@ -285,7 +286,7 @@ La plataforma está diseñada para atender las necesidades específicas de tres 
    npm install
    ```
 
-10. **Agregar en el archivo .env**
+10. **Configurar variables de entorno (crear archivo .env dentro de la carpeta frontend y agregar):**
    ```bash
    REACT_APP_API_URL=http://localhost:5001
    ```

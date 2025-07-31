@@ -53,7 +53,7 @@ const LandingPage = () => {
         <div className="container">
           <div className="header-content">
             <div className="logo">
-              <div className="logo-icon" style={{ backgroundColor: 'var(--lime-green)' }}></div>
+              <img className="logo-icon" src="/images/SENA.png" alt="Logo SENA"/>
               <h1>SENAPlanner</h1>
             </div>
             <div className="header-buttons">
@@ -156,6 +156,7 @@ const LandingPage = () => {
         .logo-icon {
           width: 40px;
           height: 40px;
+          objectFit: 'contain';
           border-radius: 8px;
         }
 

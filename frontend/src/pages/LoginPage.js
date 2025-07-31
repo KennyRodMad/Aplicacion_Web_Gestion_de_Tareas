@@ -67,7 +67,9 @@ const LoginPage = () => {
 
         <div className="login-card">
           <div className="login-logo">
-            <div className="logo-icon"></div>
+            <div>
+              <img className="logo-icon" src="/images/SENA.png" alt="Logo SENA"/>
+            </div>
           </div>
           
           <h1>Iniciar Sesión</h1>
